@@ -1,7 +1,7 @@
 package model;
 
 import java.io.*;
-
+import model.FloydResult;
 import java.util.*;
 
 public class Graph {
@@ -119,6 +119,51 @@ public class Graph {
 
             System.out.println("Error leyendo archivo: " + e.getMessage());
         }
+    }
+
+    public FloydResult floyd() {
+
+        int size = cityNames.size();
+
+        // Copia de matriz original
+        double[][] dist = new double[size][size];
+
+        // Matriz de caminos
+        String[][] path = new String[size][size];
+
+        // Inicializar matrices
+        for (int i = 0; i < size; i++) {
+
+            for (int j = 0; j < size; j++) {
+
+                dist[i][j] = adjacencyMatrix[i][j];
+                path[i][j] = "";
+            }
+        }
+
+        // Algoritmo de Floyd
+        for (int k = 0; k < size; k++) {
+
+            for (int i = 0; i < size; i++) {
+
+                for (int j = 0; j < size; j++) {
+
+                    // Evitar infinito + infinito
+                    if (dist[i][k] != INF && dist[k][j] != INF) {
+
+                        if (dist[i][k] + dist[k][j] < dist[i][j]) {
+
+                            dist[i][j] = dist[i][k] + dist[k][j];
+
+                            // Guardar ciudad intermedia
+                            path[i][j] = cityNames.get(k);
+                        }
+                    }
+                }
+            }
+        }
+
+        return new FloydResult(dist, path);
     }
 
     // Mostrar matriz
