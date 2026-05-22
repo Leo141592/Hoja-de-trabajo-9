@@ -1,5 +1,7 @@
 package model;
 
+import java.io.*;
+
 import java.util.*;
 
 public class Graph {
@@ -80,6 +82,42 @@ public class Graph {
             int j = cities.get(to);
 
             adjacencyMatrix[i][j] = INF;
+        }
+    }
+
+    public void loadFromFile(String filename) {
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                // Ignorar líneas vacías
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+
+                // Separar datos
+                String[] parts = line.split(" ");
+
+                String city1 = parts[0];
+                String city2 = parts[1];
+                double distance = Double.parseDouble(parts[2]);
+
+                // Agregar conexión
+                addEdge(city1, city2, distance);
+            }
+
+            br.close();
+
+            System.out.println("Archivo cargado correctamente.");
+
+        } catch (IOException e) {
+
+            System.out.println("Error leyendo archivo: " + e.getMessage());
         }
     }
 
