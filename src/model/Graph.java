@@ -219,6 +219,43 @@ public class Graph {
         System.out.println(dist[i][j] + " KM");
     }
 
+    public String getGraphCenter(FloydResult result) {
+
+        double[][] dist = result.getDistances();
+
+        int size = cityNames.size();
+
+        double minEccentricity = INF;
+
+        String center = "";
+
+        // Revisar cada ciudad
+        for (int i = 0; i < size; i++) {
+
+            double maxDistance = 0;
+
+            // Buscar la distancia más grande
+            for (int j = 0; j < size; j++) {
+
+                if (dist[i][j] != INF &&
+                        dist[i][j] > maxDistance) {
+
+                    maxDistance = dist[i][j];
+                }
+            }
+
+            // Verificar si es mejor centro
+            if (maxDistance < minEccentricity) {
+
+                minEccentricity = maxDistance;
+
+                center = cityNames.get(i);
+            }
+        }
+
+        return center;
+    }
+
     // Mostrar matriz
     public void printMatrix() {
 
