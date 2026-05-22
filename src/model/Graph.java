@@ -166,6 +166,59 @@ public class Graph {
         return new FloydResult(dist, path);
     }
 
+    private String buildPath(String[][] path, int i, int j) {
+
+        // No hay ciudad intermedia
+        if (path[i][j].equals("")) {
+            return "";
+        }
+
+        String intermediate = path[i][j];
+
+        int k = cities.get(intermediate);
+
+        // Construcción recursiva
+        return buildPath(path, i, k)
+                + intermediate + " -> "
+                + buildPath(path, k, j);
+    }
+
+    public void printShortestPath(
+            String from,
+            String to,
+            FloydResult result) {
+
+        if (!cities.containsKey(from) || !cities.containsKey(to)) {
+
+            System.out.println("Ciudad no encontrada.");
+            return;
+        }
+
+        int i = cities.get(from);
+        int j = cities.get(to);
+
+        double[][] dist = result.getDistances();
+        String[][] path = result.getPaths();
+
+        // No existe ruta
+        if (dist[i][j] == INF) {
+
+            System.out.println("No existe ruta.");
+            return;
+        }
+
+        // Construir camino
+        String route = from + " -> "
+                + buildPath(path, i, j)
+                + to;
+
+        System.out.println("\nRuta más corta:");
+        System.out.println(route);
+
+        System.out.println("\nDistancia total:");
+        System.out.println(dist[i][j] + " KM");
+    }
+
     // Mostrar matriz
     public void printMatrix() {
 
