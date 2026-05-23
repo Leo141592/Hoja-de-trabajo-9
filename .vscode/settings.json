@@ -1,0 +1,10 @@
+{
+    "java.project.sourcePaths": [
+        "src",
+        "src\\test"
+    ],
+    "java.project.referencedLibraries": [
+        "lib\\junit-platform-console-standalone-1.13.0-M3.jar",
+        "c:\\Users\\lhsuc\\OneDrive\\Documentos\\JL\\UVG\\2do año\\1er semestre\\Algoritmos y Estructuras de Datos\\Hojas de trabajo\\Hoja-de-trabajo-9\\lib\\junit-platform-console-standalone-1.13.0-M3.jar"
+    ]
+}

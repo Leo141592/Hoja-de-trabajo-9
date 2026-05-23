@@ -1,9 +1,9 @@
-package main.model;
+package model;
 
 import java.io.*;
 import java.util.*;
 
-import main.model.FloydResult;
+import model.FloydResult;
 
 public class Graph {
 
