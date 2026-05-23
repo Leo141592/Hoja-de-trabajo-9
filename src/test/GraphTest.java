@@ -1,9 +1,9 @@
 package test;
 
-import model.Graph;
-import model.FloydResult;
-
 import org.junit.jupiter.api.Test;
+
+import main.model.FloydResult;
+import main.model.Graph;
 
 import static org.junit.jupiter.api.Assertions.*;
 
