@@ -1,9 +1,9 @@
 package main;
 
-import model.Graph;
-import model.FloydResult;
-
 import java.util.Scanner;
+
+import main.model.FloydResult;
+import main.model.Graph;
 
 public class Main {
 
